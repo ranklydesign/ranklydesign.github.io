@@ -1,4 +1,4 @@
-<!-- Rankly Design offer / checkout page. Lives on the demo host until it moves to the Rankly site. -->
+<!-- Rankly Design offer / checkout page v2. Lives on the demo host until it moves to the Rankly site. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +49,7 @@
   .getlist .no { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 700; color: var(--acc); font-size: 1.5rem; line-height: 1.1; }
   .getlist h3 { font-size: 1.06rem; font-weight: 800; letter-spacing: 0.01em; }
   .getlist p { color: var(--dim); font-size: 0.98rem; margin-top: 0.25rem; }
+  .steps { max-width: 56rem; }
 
   .pricecard { background: var(--ink); color: var(--base); padding: 2.2rem 2.1rem 2.4rem; margin-top: -5.5rem;
                box-shadow: 1.2rem 1.2rem 0 var(--paper); position: relative; }
@@ -77,6 +78,12 @@
   .cols .no li { color: var(--dim); }
   .cols .no li::before { content: "\2014"; position: absolute; left: 0; color: var(--dim); }
 
+  .faq { border-top: 2px solid var(--line); max-width: 64rem; }
+  .faq .qa { display: grid; grid-template-columns: 17rem 1fr; gap: 0.4rem 2.2rem; padding: 1.45rem 0.2rem; border-bottom: 2px solid var(--line); }
+  .faq h3 { font-size: 1.04rem; font-weight: 800; letter-spacing: 0.01em; }
+  .faq p { color: var(--dim); font-size: 0.99rem; }
+  .faq p strong { color: var(--ink); }
+
   .checkout { padding: 5.5rem 0 6.5rem; }
   .checkout-frame { border: 3px solid var(--line); padding: clamp(1.8rem, 4.5vw, 3.4rem); background: var(--paper); }
   .checkout h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; letter-spacing: -0.01em;
@@ -84,12 +91,12 @@
   .checkout p { max-width: 40rem; color: var(--dim); margin-top: 1rem; font-size: 1.05rem; }
   .checkout p strong { color: var(--ink); }
   .cta-row { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: center; }
-  .btn-pay { display: inline-block; background: var(--acc); color: #fff; font-weight: 800; font-size: 1.12rem;
+  .btn-main { display: inline-block; background: var(--acc); color: #fff; font-weight: 800; font-size: 1.12rem;
              letter-spacing: 0.02em; padding: 1.1rem 2.4rem; border: 3px solid var(--acc); transition: all 0.2s ease; }
-  .btn-pay:hover { background: transparent; color: var(--acc); }
-  .btn-call { display: inline-block; background: transparent; color: var(--ink); font-weight: 800; font-size: 1.12rem;
+  .btn-main:hover { background: transparent; color: var(--acc); }
+  .btn-alt { display: inline-block; background: transparent; color: var(--ink); font-weight: 800; font-size: 1.12rem;
               padding: 1.1rem 2.4rem; border: 3px solid var(--ink); transition: all 0.2s ease; }
-  .btn-call:hover { background: var(--ink); color: var(--base); }
+  .btn-alt:hover { background: var(--ink); color: var(--base); }
   .checkout .alt { margin-top: 1.1rem; font-size: 0.95rem; color: var(--dim); }
   .checkout .alt a { color: var(--acc); font-weight: 700; border-bottom: 2px solid var(--acc); }
 
@@ -104,6 +111,7 @@
     .hero-grid { grid-template-columns: 1fr; }
     .pricecard { margin-top: 0; box-shadow: 0.7rem 0.7rem 0 var(--paper); }
     .cols { grid-template-columns: 1fr; }
+    .faq .qa { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -172,17 +180,60 @@
   </div>
 </section>
 
+<section class="block">
+  <div class="wrap">
+    <p class="sec-tag">After you pay</p>
+    <h2 class="sec-head">What happens next,<br>step by step.</h2>
+    <ul class="getlist steps">
+      <li><span class="no">01</span><div><h3>You pay the $50 signup</h3><p>Payment runs through Stripe. The moment it&rsquo;s confirmed, we start — that&rsquo;s when the clock starts.</p></div></li>
+      <li><span class="no">02</span><div><h3>The kickoff email lands</h3><p>One email with a short edits form right in the message — you answer by hitting reply — plus one question: do you already own a domain name? Prefer to talk it through? We can fill it in together on a 10-minute call.</p></div></li>
+      <li><span class="no">03</span><div><h3>Your domain gets pointed over</h3><p>Already own one? We send the exact settings to change, in plain language, and verify them from our side. Don&rsquo;t own one yet? We register it together on a short call — in your name, on your account, so it&rsquo;s your property from minute one.</p></div></li>
+      <li><span class="no">04</span><div><h3>We build your real site</h3><p>Your preview becomes the live website, with your words, photos, hours, and services in place and your round of corrections applied. Booking and call buttons get wired to the number and scheduler you already use.</p></div></li>
+      <li><span class="no">05</span><div><h3>Live — and your Google listing follows</h3><p>Your site goes live on your domain within 48 hours of the domain being pointed over. We point your Google Business Profile at the new site, check the listing, and send a handoff email confirming everything. Your $37.50 monthly starts the day the site goes live.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <p class="sec-tag">Questions</p>
+    <h2 class="sec-head">Before you ask.</h2>
+    <div class="faq">
+      <div class="qa">
+        <h3>Who owns the domain?</h3>
+        <p>You do. If you already own a domain, we point it at the new site. If you don&rsquo;t, we register one together — <strong>in your name, on your own registrar account</strong>, paid by you (roughly $10–20 a year). That&rsquo;s deliberate: the domain is your property from minute one, and if you ever move the site, it goes with you.</p>
+      </div>
+      <div class="qa">
+        <h3>How do edits work?</h3>
+        <p>Just reply to any email from us with what you want changed — new photos, new hours, a new service. <strong>Up to 30 minutes of updates a month is included</strong> in the monthly. We confirm every change before it goes up, and most land within a couple of business days. One round of corrections at setup is included too.</p>
+      </div>
+      <div class="qa">
+        <h3>What if I want to cancel?</h3>
+        <p>Email us and we&rsquo;ll stop the monthly billing. The monthly is what covers your hosting, security, upkeep, and edits, so those services end when it stops. Your domain stays registered in your name either way, and <strong>the site itself is yours to move</strong> — you&rsquo;re never locked in to us to keep your web address.</p>
+      </div>
+      <div class="qa">
+        <h3>How fast will my site be live?</h3>
+        <p><strong>Within 48 hours of your domain being pointed over.</strong> Two things sit on your side of the clock: your answers to the short edits form, and domain access. If either stalls, the clock pauses at that gate — and we&rsquo;ll tell you the same day rather than let it slip quietly.</p>
+      </div>
+      <div class="qa">
+        <h3>How does payment work?</h3>
+        <p>The $50 signup is paid through Stripe. The $37.50 monthly is a Stripe subscription that <strong>starts when your site goes live</strong> — not before. Prefer to talk first? Book the call below and we&rsquo;ll sort out payment together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="checkout">
   <div class="wrap">
     <div class="checkout-frame">
       <h2>Ready when you are.</h2>
-      <p>Pay the <strong>$50 signup</strong> and we start the same day — most sites are live on your domain within 48 hours of the domain being pointed over. The $37.50 monthly starts when your site goes live.</p>
+      <p>The clear next step: <strong>book a 30-minute call</strong> and we&rsquo;ll walk through your preview and get it started together. Rather skip the call? Pay the <strong>$50 signup</strong> and we start the same day — most sites are live within 48 hours of the domain being pointed over, and the $37.50 monthly starts when your site goes live.</p>
       <div class="cta-row">
-        <!-- ROBERT: replace the href="#" below with the Stripe payment link -->
-        <a class="btn-pay" href="#">Pay the $50 signup</a>
-        <a class="btn-call" href="https://calendly.com/ranklydesign/30min">Book a 30-minute call</a>
+        <a class="btn-main" href="https://calendly.com/ranklydesign/30min">Book a 30-minute call</a>
+        <!-- ROBERT: payment button is a PLACEHOLDER — replace the href="#" below with the Stripe payment link -->
+        <a class="btn-alt" id="pay-btn" href="#">Pay the $50 signup</a>
       </div>
-      <p class="alt">Rather talk it through first? Book the call — or just reply to the email that sent you here, or write to <a href="mailto:ranklydesign@gmail.com">ranklydesign@gmail.com</a>. Online payment not working for you? We&rsquo;ll sort it out on the call.</p>
+      <p class="alt">Questions first? Just reply to the email that sent you here, or write to <a href="mailto:ranklydesign@gmail.com">ranklydesign@gmail.com</a>. Online payment not working for you? We&rsquo;ll sort it out on the call.</p>
     </div>
   </div>
 </section>
@@ -202,6 +253,15 @@
 </script>
 <script data-goatcounter="https://ranklydesign.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+<script>
+  // Offer -> payment-click tracking: fires the GoatCounter event in addition
+  // to the button's normal href behavior (no preventDefault).
+  document.getElementById('pay-btn').addEventListener('click', function() {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({path: '/offer/payment-click', event: true});
+    }
+  });
+</script>
 
 </body>
 </html>
