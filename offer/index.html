@@ -1,267 +1,41 @@
-<!-- Rankly Design offer / checkout page v2. Lives on the demo host until it moves to the Rankly site. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Get Your Website Live — Rankly Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --base: #f4f1ea;
-    --paper: #ece7d9;
-    --ink: #17202a;
-    --acc: #c1440e;
-    --dim: rgba(23,32,42,0.66);
-    --line: rgba(23,32,42,0.85);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-         background: var(--base); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-  a { text-decoration: none; }
-  .wrap { max-width: 76rem; margin: 0 auto; padding: 0 1.6rem; }
-  .serif { font-family: 'Playfair Display', Georgia, serif; }
-
-  @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-  .up { opacity: 0; animation: rise 0.8s cubic-bezier(0.2,0.8,0.3,1) forwards; }
-
-  .masthead { border-bottom: 2px solid var(--line); }
-  .masthead .wrap { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 2rem; padding-top: 1.3rem; padding-bottom: 1.1rem; }
-  .wordmark { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 1.7rem; letter-spacing: -0.01em; color: var(--ink); }
-  .wordmark span { color: var(--acc); }
-  .masthead .where { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); }
-
-  .hero { padding: 4.2rem 0 0; position: relative; }
-  .hero .kicker { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--acc); }
-  .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; letter-spacing: -0.015em;
-             font-size: clamp(2.9rem, 7.4vw, 5.8rem); line-height: 1.02; margin-top: 1.1rem; max-width: 12ch; }
-  .hero h1 em { font-style: italic; font-weight: 700; color: var(--acc); }
-  .hero .sub { margin-top: 1.6rem; font-size: 1.13rem; max-width: 34rem; color: var(--dim); }
-  .hero .sub strong { color: var(--ink); }
-
-  .hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 2.5rem; align-items: start; margin-top: 3rem; }
-  .getlist { list-style: none; border-top: 2px solid var(--line); }
-  .getlist li { display: grid; grid-template-columns: 3.4rem 1fr; gap: 1.1rem; padding: 1.35rem 0.2rem; border-bottom: 2px solid var(--line); }
-  .getlist .no { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 700; color: var(--acc); font-size: 1.5rem; line-height: 1.1; }
-  .getlist h3 { font-size: 1.06rem; font-weight: 800; letter-spacing: 0.01em; }
-  .getlist p { color: var(--dim); font-size: 0.98rem; margin-top: 0.25rem; }
-  .steps { max-width: 56rem; }
-
-  .pricecard { background: var(--ink); color: var(--base); padding: 2.2rem 2.1rem 2.4rem; margin-top: -5.5rem;
-               box-shadow: 1.2rem 1.2rem 0 var(--paper); position: relative; }
-  .pricecard .badge { display: inline-block; background: var(--acc); color: var(--base); font-weight: 800;
-                      font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.45rem 0.9rem; }
-  .pricecard h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 1.9rem; margin: 1.1rem 0 0.4rem; line-height: 1.1; }
-  .pricecard .row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-                    padding: 1rem 0; border-bottom: 1px solid rgba(244,241,234,0.25); }
-  .pricecard .row:last-of-type { border-bottom: none; }
-  .pricecard .lbl { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(244,241,234,0.65); }
-  .pricecard .amt { white-space: nowrap; }
-  .pricecard s { color: rgba(244,241,234,0.4); font-size: 1.15rem; }
-  .pricecard .now { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 2.5rem; color: var(--base); margin-left: 0.5rem; }
-  .pricecard .per { color: rgba(244,241,234,0.65); font-size: 0.95rem; margin-left: 0.3rem; }
-  .pricecard .fine { font-size: 0.9rem; color: rgba(244,241,234,0.72); margin-top: 0.9rem; }
-
-  section.block { padding: 5rem 0 0; }
-  .sec-tag { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--acc); }
-  .sec-head { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; letter-spacing: -0.01em;
-              font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.05; margin: 0.7rem 0 1.8rem; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-  .cols h3 { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 1rem; }
-  .cols ul { list-style: none; }
-  .cols li { padding: 0.55rem 0 0.55rem 1.8rem; position: relative; border-bottom: 1px solid rgba(23,32,42,0.14); }
-  .cols .yes li::before { content: "\2713"; position: absolute; left: 0; color: var(--acc); font-weight: 800; }
-  .cols .no li { color: var(--dim); }
-  .cols .no li::before { content: "\2014"; position: absolute; left: 0; color: var(--dim); }
-
-  .faq { border-top: 2px solid var(--line); max-width: 64rem; }
-  .faq .qa { display: grid; grid-template-columns: 17rem 1fr; gap: 0.4rem 2.2rem; padding: 1.45rem 0.2rem; border-bottom: 2px solid var(--line); }
-  .faq h3 { font-size: 1.04rem; font-weight: 800; letter-spacing: 0.01em; }
-  .faq p { color: var(--dim); font-size: 0.99rem; }
-  .faq p strong { color: var(--ink); }
-
-  .checkout { padding: 5.5rem 0 6.5rem; }
-  .checkout-frame { border: 3px solid var(--line); padding: clamp(1.8rem, 4.5vw, 3.4rem); background: var(--paper); }
-  .checkout h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; letter-spacing: -0.01em;
-                 font-size: clamp(2.2rem, 5.4vw, 4rem); line-height: 1.05; }
-  .checkout p { max-width: 40rem; color: var(--dim); margin-top: 1rem; font-size: 1.05rem; }
-  .checkout p strong { color: var(--ink); }
-  .cta-row { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: center; }
-  .btn-main { display: inline-block; background: var(--acc); color: #fff; font-weight: 800; font-size: 1.12rem;
-             letter-spacing: 0.02em; padding: 1.1rem 2.4rem; border: 3px solid var(--acc); transition: all 0.2s ease; }
-  .btn-main:hover { background: transparent; color: var(--acc); }
-  .btn-alt { display: inline-block; background: transparent; color: var(--ink); font-weight: 800; font-size: 1.12rem;
-              padding: 1.1rem 2.4rem; border: 3px solid var(--ink); transition: all 0.2s ease; }
-  .btn-alt:hover { background: var(--ink); color: var(--base); }
-  .checkout .alt { margin-top: 1.1rem; font-size: 0.95rem; color: var(--dim); }
-  .checkout .alt a { color: var(--acc); font-weight: 700; border-bottom: 2px solid var(--acc); }
-
-  footer { border-top: 2px solid var(--line); padding: 2.4rem 0 3rem; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 0.6rem 2.5rem; justify-content: space-between; align-items: baseline; }
-  footer .fbrand { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 1.2rem; }
-  footer .fbrand span { color: var(--acc); }
-  footer p { font-size: 0.88rem; color: var(--dim); }
-  footer a { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--acc); }
-
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .pricecard { margin-top: 0; box-shadow: 0.7rem 0.7rem 0 var(--paper); }
-    .cols { grid-template-columns: 1fr; }
-    .faq .qa { grid-template-columns: 1fr; }
-  }
-</style>
-</head>
-<body>
-
-<header class="masthead">
-  <div class="wrap">
-    <div class="wordmark">Rankly<span>.</span> Design</div>
-    <div class="where">Westminster, Colorado</div>
-  </div>
-</header>
-
-<div class="hero">
-  <div class="wrap">
-    <p class="kicker up" style="animation-delay:0.05s">You&rsquo;ve seen the preview — here&rsquo;s how it goes live</p>
-    <h1 class="up" style="animation-delay:0.16s">Your preview, <em>live</em> on your own domain.</h1>
-    <p class="sub up" style="animation-delay:0.3s">We built a draft of your new website so you could judge the work before paying a cent. This page is the whole deal, in plain terms: <strong>what you get, what it costs, and what happens when you say yes.</strong></p>
-
-    <div class="hero-grid">
-      <ul class="getlist up" style="animation-delay:0.42s">
-        <li><span class="no">01</span><div><h3>The site you already saw — finished</h3><p>The preview becomes your real website: your words, your photos, your hours, your services. One round of your corrections is built into the setup.</p></div></li>
-        <li><span class="no">02</span><div><h3>On your own domain</h3><p>The site lives at your web address — yourbusiness.com — not ours. If you already own a domain, we point it over. If you don&rsquo;t, we&rsquo;ll register one together, in your name. It stays yours.</p></div></li>
-        <li><span class="no">03</span><div><h3>Hosting and upkeep handled</h3><p>Hosting, security, and the technical side are covered by the monthly. You never log into a website builder or touch a setting.</p></div></li>
-        <li><span class="no">04</span><div><h3>Edits done for you</h3><p>New photos, changed hours, a new service — send them over and we make the change. Up to 30 minutes of updates a month is included.</p></div></li>
-        <li><span class="no">05</span><div><h3>Google listing pointed at your site</h3><p>We update your Google Business Profile so the website link sends searchers to your new site, and check the listing while we&rsquo;re in there.</p></div></li>
-      </ul>
-
-      <aside class="pricecard up" style="animation-delay:0.54s">
-        <span class="badge">Launch offer — 50% off</span>
-        <h2>The price, whole and complete</h2>
-        <div class="row"><span class="lbl">Signup</span><span class="amt"><s>$100</s><span class="now">$50</span><span class="per">one time</span></span></div>
-        <div class="row"><span class="lbl">Monthly</span><span class="amt"><s>$75/mo</s><span class="now">$37.50</span><span class="per">/month</span></span></div>
-        <p class="fine">50% off both the signup and the monthly rate, for a short time only. The regular price is $100 + $75/mo. No deadline games — the offer is simply the launch price while it lasts.</p>
-      </aside>
-    </div>
-  </div>
-</div>
-
-<section class="block">
-  <div class="wrap">
-    <p class="sec-tag">Straight answers</p>
-    <h2 class="sec-head">Included. Not included.<br>Nothing in the fine print.</h2>
-    <div class="cols">
-      <div class="yes">
-        <h3>Included</h3>
-        <ul>
-          <li>Your website — the design you previewed — live on your own domain</li>
-          <li>Hosting, security, and technical upkeep</li>
-          <li>One round of your corrections at setup (words, photos, hours, services)</li>
-          <li>Up to 30 minutes of content updates every month, done for you</li>
-          <li>Google Business Profile website link updated to the new site</li>
-          <li>Booking and call buttons wired to the number and scheduler you already use</li>
-        </ul>
-      </div>
-      <div class="no">
-        <h3>Not included</h3>
-        <ul>
-          <li>Your domain registration itself — roughly $10–20 a year at a registrar, paid by you so the domain is registered in your name</li>
-          <li>An online store with checkout for your customers</li>
-          <li>Custom features beyond the website — apps, portals, integrations</li>
-          <li>Paid advertising of any kind</li>
-          <li>A logo or brand design from scratch (we&rsquo;ll happily work with what you have)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <p class="sec-tag">After you pay</p>
-    <h2 class="sec-head">What happens next,<br>step by step.</h2>
-    <ul class="getlist steps">
-      <li><span class="no">01</span><div><h3>You pay the $50 signup</h3><p>Payment runs through Stripe. The moment it&rsquo;s confirmed, we start — that&rsquo;s when the clock starts.</p></div></li>
-      <li><span class="no">02</span><div><h3>The kickoff email lands</h3><p>One email with a short edits form right in the message — you answer by hitting reply — plus one question: do you already own a domain name? Prefer to talk it through? We can fill it in together on a 10-minute call.</p></div></li>
-      <li><span class="no">03</span><div><h3>Your domain gets pointed over</h3><p>Already own one? We send the exact settings to change, in plain language, and verify them from our side. Don&rsquo;t own one yet? We register it together on a short call — in your name, on your account, so it&rsquo;s your property from minute one.</p></div></li>
-      <li><span class="no">04</span><div><h3>We build your real site</h3><p>Your preview becomes the live website, with your words, photos, hours, and services in place and your round of corrections applied. Booking and call buttons get wired to the number and scheduler you already use.</p></div></li>
-      <li><span class="no">05</span><div><h3>Live — and your Google listing follows</h3><p>Your site goes live on your domain within 48 hours of the domain being pointed over. We point your Google Business Profile at the new site, check the listing, and send a handoff email confirming everything. Your $37.50 monthly starts the day the site goes live.</p></div></li>
-    </ul>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <p class="sec-tag">Questions</p>
-    <h2 class="sec-head">Before you ask.</h2>
-    <div class="faq">
-      <div class="qa">
-        <h3>Who owns the domain?</h3>
-        <p>You do. If you already own a domain, we point it at the new site. If you don&rsquo;t, we register one together — <strong>in your name, on your own registrar account</strong>, paid by you (roughly $10–20 a year). That&rsquo;s deliberate: the domain is your property from minute one, and if you ever move the site, it goes with you.</p>
-      </div>
-      <div class="qa">
-        <h3>How do edits work?</h3>
-        <p>Just reply to any email from us with what you want changed — new photos, new hours, a new service. <strong>Up to 30 minutes of updates a month is included</strong> in the monthly. We confirm every change before it goes up, and most land within a couple of business days. One round of corrections at setup is included too.</p>
-      </div>
-      <div class="qa">
-        <h3>What if I want to cancel?</h3>
-        <p>Email us and we&rsquo;ll stop the monthly billing. The monthly is what covers your hosting, security, upkeep, and edits, so those services end when it stops. Your domain stays registered in your name either way, and <strong>the site itself is yours to move</strong> — you&rsquo;re never locked in to us to keep your web address.</p>
-      </div>
-      <div class="qa">
-        <h3>How fast will my site be live?</h3>
-        <p><strong>Within 48 hours of your domain being pointed over.</strong> Two things sit on your side of the clock: your answers to the short edits form, and domain access. If either stalls, the clock pauses at that gate — and we&rsquo;ll tell you the same day rather than let it slip quietly.</p>
-      </div>
-      <div class="qa">
-        <h3>How does payment work?</h3>
-        <p>The $50 signup is paid through Stripe. The $37.50 monthly is a Stripe subscription that <strong>starts when your site goes live</strong> — not before. Prefer to talk first? Book the call below and we&rsquo;ll sort out payment together.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="checkout">
-  <div class="wrap">
-    <div class="checkout-frame">
-      <h2>Ready when you are.</h2>
-      <p>The clear next step: <strong>book a 30-minute call</strong> and we&rsquo;ll walk through your preview and get it started together. Rather skip the call? Pay the <strong>$50 signup</strong> and we start the same day — most sites are live within 48 hours of the domain being pointed over, and the $37.50 monthly starts when your site goes live.</p>
-      <div class="cta-row">
-        <a class="btn-main" href="https://calendly.com/ranklydesign/30min">Book a 30-minute call</a>
-        <!-- ROBERT: payment button is a PLACEHOLDER — replace the href="#" below with the Stripe payment link -->
-        <a class="btn-alt" id="pay-btn" href="#">Pay the $50 signup</a>
-      </div>
-      <p class="alt">Questions first? Just reply to the email that sent you here, or write to <a href="mailto:ranklydesign@gmail.com">ranklydesign@gmail.com</a>. Online payment not working for you? We&rsquo;ll sort it out on the call.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="fbrand">Rankly<span>.</span> Design</div>
-    <p>Rankly Design · 6880 W 91st Ct, Westminster, CO 80021 · <a href="mailto:ranklydesign@gmail.com">ranklydesign@gmail.com</a></p>
-  </div>
-</footer>
-
+<title>RanklyDesign | This Page Has Moved</title>
+<!-- Prepared replacement for the offer page on the old demo host.
+     Redirects to the canonical offer on ranklydesign.com, preserving the
+     full query string so ?src=<slug> attribution survives the hop.
+     NOT pushed yet — deploy by replacing the old host's /offer/index.html
+     with this file when the main-site offer page goes live. -->
+<meta http-equiv="refresh" content="0; url=https://ranklydesign.com/offer/">
 <script>
-  window.goatcounter = {path: function() {
-    var src = new URLSearchParams(window.location.search).get('src');
-    return src ? '/offer/from-' + src : '/offer/';
-  }};
+    // Primary redirect: keep the full query string (and fragment) so the
+    // per-slug ?src= attribution lands intact on the new offer page.
+    window.location.replace(
+        'https://ranklydesign.com/offer/' + window.location.search + window.location.hash
+    );
 </script>
 <script data-goatcounter="https://ranklydesign.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
-<script>
-  // Offer -> payment-click tracking: fires the GoatCounter event in addition
-  // to the button's normal href behavior (no preventDefault).
-  document.getElementById('pay-btn').addEventListener('click', function() {
-    if (window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({path: '/offer/payment-click', event: true});
-    }
-  });
-</script>
-
+<style>
+    body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+           background: #ffffff; color: #1d1d1f; margin: 0; min-height: 100vh;
+           display: flex; align-items: center; justify-content: center; }
+    main { text-align: center; padding: 2rem; }
+    h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+    p { color: #6b7280; }
+    a { color: #1e3a2f; font-weight: 700; }
+</style>
+</head>
+<body>
+<main>
+    <h1>This page has moved.</h1>
+    <p>The Rankly Design offer now lives at
+       <a href="https://ranklydesign.com/offer/">ranklydesign.com/offer</a> —
+       you should be on your way there automatically.</p>
+</main>
 </body>
 </html>
